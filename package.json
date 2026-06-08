@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "lecture": "node lectures/p1-lecture3.2.js"
+    "start": "node lectures/p2-lecture1.js"
   },
   "keywords": [],
   "author": "",
