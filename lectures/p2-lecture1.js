@@ -1,4 +1,5 @@
 /* Tool Calling
+
  Research link: https://developers.openai.com/api/docs/guides/function-calling
 The tool calling flow:
 Tool calling is a multi-step conversation between your application and a model via the OpenAI API.
@@ -7,6 +8,13 @@ Tool calling is a multi-step conversation between your application and a model v
 3. Execute code on the application side with input from the tool call
 4. Make a second request to the model with the tool output
 5. Receive a final response from the model (or more tool calls)
+
+Simply put:
+You send a prompt to a model along with tools that you've correctly listed.
+The model's response contains the tools it requires for the operation.
+You then check for the tools it requires and give it instructions on what to do next
+It will carryout those instructions and send a final response.
+Note: You could keep on going about sending and refining the responses.
 */
 /* Function tool example
 Let's look at an end-to-end tool calling flow for a get_horoscope function that gets a daily horoscope for an astrological sign
@@ -79,14 +87,14 @@ if (assistantMessage.tool_calls) {
             })
         }
     }
+
+    // 5. The model should be able to give a response!
     const finalResponse = await openai.chat.completions.create({
         model: "meta/llama-3.1-8b-instruct",
         messages,
         tools,
     })
-
-    // 5. The model should be able to give a response!
-    console.log("Final output: ")
+    // console.log("Final output: ")
     console.log(finalResponse.choices[0].message.content)
 }
 
