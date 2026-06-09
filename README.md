@@ -1,469 +1,228 @@
-# Phase 1: OpenAI SDK Foundations
+# AI Agent Infrastructure Learning Roadmap
 
-## Building a Persistent CLI AI Chatbot
+## Principle
+Do not jump directly into agents. Build competence in:
 
-### Overview
-
-Phase 1 focuses on understanding the fundamental building blocks of AI-powered applications using the OpenAI SDK and OpenAI-compatible providers such as NVIDIA NIM.
-
-The objective is not simply to generate responses from an AI model, but to understand how real-world conversational systems are designed, built, and maintained.
-
-Throughout this phase, the application evolves from a simple prompt-response CLI tool into a persistent chatbot capable of storing and retrieving conversation history from a database.
+**SDK fundamentals → Retrieval → Workflows → Agent systems → Production infrastructure**
 
 ---
 
-## Learning Objectives
+# Phase 1 — SDK Foundations (Week 1–2)
 
-By the end of Phase 1, the following concepts should be understood:
+## OpenAI SDK Fundamentals
 
-- OpenAI SDK fundamentals
-- OpenAI-compatible APIs
-- Chat Completion APIs
-- Streaming responses
-- Runtime memory
-- Persistent memory
-- Sessions and conversation boundaries
-- User and conversation modeling
-- Message persistence
-- MongoDB integration
-- CLI chatbot development
-- AI application architecture fundamentals
+### Core Topics
+- Chat Applications
+  - Quick Chatbot
+  - Streaming Chatbot
+  - Memory / Persistent Chat
+  - Multi-User Sessions
 
----
+### Tool-Augmented AI
+- Function Calling
+- Structured Outputs
 
-## Technologies Used
+### Production Basics
+- Authentication
+- Sessions
+- Deployment
 
-### AI
+## Projects
+- CLI Chatbot
+- Web Chatbot
+- Memory Assistant
+- Customer Support Bot
 
-- OpenAI SDK
-- NVIDIA NIM API
-- Meta Llama 3.1 8B Instruct
-
-### Backend
-
-- Node.js
-- JavaScript (ES Modules)
-
-### Database
-
-- MongoDB
-- MongoDB Atlas
-
-### Utilities
-
-- Readline
-- Dotenv
-- Crypto
+## Goal
+Master messages, streaming, sessions, persistence, and application structure.
 
 ---
 
-## Lecture 1 — Simple Chatbot and Runtime Memory
+# Phase 2 — Retrieval & External Knowledge (Week 2–3)
 
-### Concepts Covered
+## Tool Calling + RAG Infrastructure
 
-- OpenAI SDK setup
-- API authentication
-- Chat completions
-- CLI interaction
-- Runtime memory
-
-### Architecture
-
-```text
-User
-  ↓
-Prompt
-  ↓
-Model
-  ↓
-Response
-```
-
-### Runtime Memory
-
-Messages are stored in memory while the application is running.
-
-```js
-const messages = [
-  {
-    role: "system",
-    content: "You are a helpful assistant."
-  }
-]
-```
-
-New messages are appended using:
-
-```js
-messages.push(...)
-```
-
-### Limitation
-
-Runtime memory exists only in RAM.
-
-```text
-Application Restart
-        ↓
-Memory Lost
-```
-
----
-
-## Lecture 2 — Streaming Responses and Responsive UX
-
-### Concepts Covered
-
-- Streaming completions
-- Token-by-token rendering
-- Async iteration
-- Real-time user experiences
-
-### Architecture
-
-```text
-User
-  ↓
-Request
-  ↓
-Model Stream
-  ↓
-Partial Tokens
-  ↓
-Terminal Output
-```
-
-### Benefits
-
-- Faster perceived response times
-- Better user experience
-- Foundation for modern chat interfaces
-- Reduced waiting time
-
-### Supporting Concepts
-
-#### Buffering
-
-Collecting streamed chunks before rendering.
-
-#### Cancellation
-
-Stopping generation before completion.
-
-#### Retries
-
-Recovering from temporary network failures.
-
-#### Error States
-
-Handling generation failures gracefully.
-
----
-
-## Lecture 3 — Sessions, Persistence and Multi-User Memory
-
-### Concepts Covered
-
-- Session boundaries
-- Persistent storage
-- Conversation history
-- User modeling
-- Conversation modeling
-- Message persistence
-
----
-
-## Memory Evolution
-
-### Stage 1 — Runtime Memory
-
-```js
-messages.push(...)
-```
-
-Stored in RAM.
-
-Lost when the application exits.
-
----
-
-### Stage 2 — Persistent Memory
-
-```text
-MongoDB
-```
-
-Stored permanently.
-
-Survives application restarts.
-
----
-
-## Memory Architecture
-
-```text
-User
- └── Conversation
-      └── Messages
-```
-
-This architecture forms the foundation of most modern AI chat applications.
-
----
-
-## User Model
-
-```js
-{
-  userId: "user_123",
-  name: "Favour"
-}
-```
-
----
-
-## Conversation Model
-
-```js
-{
-  conversationId: "conv_001",
-  userId: "user_123",
-  title: "OpenAI SDK Learning"
-}
-```
-
----
-
-## Message Model
-
-```js
-{
-  messageId: "msg_001",
-  conversationId: "conv_001",
-  role: "user",
-  content: "Explain streaming."
-}
-```
-
----
-
-## Current Database Design
-
-### Implemented
-
-```text
-messages
-```
-
-### Planned
-
-```text
-users
-conversations
-messages
-memory
-```
-
----
-
-## Chat Flow
-
-```text
-User Input
-      ↓
-Load Conversation History
-      ↓
-Construct Message Context
-      ↓
-Send To Model
-      ↓
-Receive Response
-      ↓
-Save Assistant Reply
-      ↓
-Return Response
-```
-
----
-
-## Current Features
-
-### Implemented
-
-- CLI chatbot
-- OpenAI SDK integration
-- NVIDIA NIM integration
-- Runtime memory
-- MongoDB connection
-- Message persistence
-- Conversation retrieval
-- Environment variable management
-- Streaming experimentation
-
-### In Progress
-
-- Users collection
-- Conversations collection
-- Long-term memory records
-- Session management
-- Conversation creation service
-
-### Planned
-
-- Context window management
-- Memory compression
-- Retrieval systems
-- Semantic search
+### Core Topics
+- Function Calling
+- Structured Outputs
 - Embeddings
-- Vector databases
-- Tool calling
-- Agent workflows
-- Retrieval-Augmented Generation (RAG)
+- Vector Search
+- RAG Systems
+- Hybrid Search
+
+### Vector Databases
+- Pinecone
+- Qdrant
+- Weaviate
+- pgvector
+
+## Projects
+- PDF Assistant
+- Document Q&A
+- Company Knowledge Base
+- Meeting Notes Assistant
+
+## Goal
+Learn how models access, retrieve, and reason over external knowledge.
 
 ---
 
-## Key Lessons Learned
+# Phase 3 — Manual Agent Workflows (Week 3–4)
 
-### Environment Variables
+## Agent Loop Concept
+User → Model → Tool → Model → Tool → Response
 
-Hidden Unicode characters can break API authentication.
+## Build From Scratch
+- Research Agent
+- Travel Planner
+- Code Assistant
+- Data Analyst
 
-Example:
+## Topics
+- Multi-Step Reasoning
+- Tool Orchestration
+- Workflow Design
+- State Management
 
-```text
-U+200E
-Left-To-Right Mark
-```
-
-Solution:
-
-```js
-const API_KEY =
-  process.env.OPENAI_API_KEY
-    ?.replace(/[\u200E\u200F\u202A-\u202E]/g, "")
-    .trim()
-```
+## Goal
+Understand agent mechanics before abstractions hide them.
 
 ---
 
-### Responses API vs Chat Completions
+# Phase 4 — OpenAI Agents SDK (Week 4–5)
 
-Not every OpenAI-compatible provider supports the OpenAI Responses API.
+## Agent Infrastructure
 
-Example:
+### Core Topics
+- Agents
+- Runs & Sessions
+- Context & Memory
+- Tool Systems
+  - Search
+  - Database
+  - Files
+  - APIs
+  - Terminal
+  - Custom Tools
 
-```js
-client.responses.create(...)
-```
+### Multi-Agent Workflows
+- Sandboxes
+- Async Execution
+- Production Deployment
 
-may fail depending on the provider.
+## Projects
+- Coding Agent
+- Research Agent
+- Business Analyst Agent
+- Autonomous Document Processor
 
-Alternative:
-
-```js
-client.chat.completions.create(...)
-```
-
----
-
-### Runtime Memory vs Persistent Memory
-
-#### Runtime Memory
-
-```js
-messages.push(...)
-```
-
-Advantages:
-
-- Fast
-- Simple
-
-Disadvantages:
-
-- Lost on restart
+## Goal
+Learn orchestration, autonomous execution, and agent infrastructure.
 
 ---
 
-#### Persistent Memory
+# Phase 5 — Claude Ecosystem + MCP (Week 5–6)
 
-```text
-MongoDB
-```
+## Claude Client SDK
+- Chat Applications
+- Tool Use
+- Structured Outputs
+- Context Management
+- MCP Integration
 
-Advantages:
+## Claude Agent SDK
+- Skills
+- Memory
+- Command Execution
+- Managed Agents
+- Multi-Agent Systems
 
-- Durable
-- Scalable
-- Multi-session capable
+## MCP Ecosystem
+- MCP Fundamentals
+- Servers & Clients
+- OpenAI / Claude Integration
+- Security
+- Enterprise MCP
 
-Disadvantages:
+## Projects
+- Claude Coding Assistant
+- Repository Analysis Agent
+- Documentation Generator
 
-- More complex architecture
-
----
-
-## Current Project Status
-
-### Completion Progress
-
-| Area | Status |
-|--------|--------|
-| OpenAI SDK Basics | ✅ Complete |
-| Runtime Memory | ✅ Complete |
-| Streaming Responses | ✅ Complete |
-| MongoDB Persistence | ✅ Complete |
-| Session Modeling | ✅ Complete |
-| Conversation Modeling | ✅ Complete |
-| Users Collection | 🚧 In Progress |
-| Conversations Collection | 🚧 In Progress |
-| Long-Term Memory | 🚧 In Progress |
-| Retrieval Systems | ⏳ Planned |
-| RAG Architecture | ⏳ Planned |
-| Agent Workflows | ⏳ Planned |
+## Goal
+Understand Anthropic’s agent architecture and MCP-first workflows.
 
 ---
 
-## Architectural Milestone Achieved
+# Phase 6 — Production AI Infrastructure
 
-Transitioned from:
+## Production Topics
+- Prompt Management
+- Evaluations
+- Monitoring
+- Tracing
+- Observability
+- Caching
+- Rate Limiting
+- Cost Control
+- Security
+- CI/CD
+- Deployment
 
-```text
-Simple Prompt → Response Script
-```
+## Common Production Stack
+- OpenAI SDK & Agents SDK
+- Anthropic SDK & Agent SDK
+- LangGraph
+- LangSmith
+- OpenTelemetry
+- PostgreSQL + pgvector
+- Pinecone / Qdrant / Weaviate
 
-to:
-
-```text
-Persistent Multi-Session AI Chat Application
-```
-
-using:
-
-```text
-User
- └── Conversation
-      └── Messages
-```
-
-as the core memory architecture.
+## Goal
+Build reliable, observable, scalable AI systems.
 
 ---
 
-## Next Phase
+# Final Learning Order
 
-### Retrieval, Context Windows and Memory Compression
+## Progression Path
+1. OpenAI SDK Fundamentals
+   - Chat
+   - Streaming
+   - Memory
+   - Tool Calling
+   - Production Basics
 
-As conversations grow, sending every historical message to the model becomes increasingly expensive and inefficient.
+2. Retrieval Infrastructure
+   - Embeddings
+   - Vector Search
+   - RAG
+   - Hybrid Search
 
-The next phase explores:
+3. Manual Agent Workflows
+   - Tool Loops
+   - Multi-Step Reasoning
+   - Workflow Design
 
-- Context window limitations
-- Conversation summarization
-- Memory compression
-- Retrieval strategies
-- Embeddings
-- Vector databases
-- Long-term memory architectures
+4. OpenAI Agents SDK
+   - Tools
+   - Sessions
+   - Memory
+   - Multi-Agent Systems
 
-These concepts form the foundation of modern production-grade AI systems.
+5. Claude Ecosystem + MCP
+
+6. Production AI Infrastructure
+
+---
+
+## 2026 Engineering Progression
+
+SDK Fundamentals
+→ Retrieval & Tool Use
+→ Manual Agents
+→ Agent SDKs
+→ MCP Ecosystem
+→ Production Infrastructure
+
+This ordering reflects how mature AI engineering teams typically build systems in 2026.
