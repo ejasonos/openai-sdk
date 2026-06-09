@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node lectures/p2-lecture2.js"
+    "start": "node lectures/p2-lecture2.js",
+    "test": "node homework/toolTest.js"
   },
   "keywords": [],
   "author": "",
