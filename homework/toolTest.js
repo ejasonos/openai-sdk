@@ -41,10 +41,10 @@ const bash = async (cmd, path) => {
     })
 }
 // function: web search
-const curl = async (url, content) => {
-    const res = await fetch(url)
-    await res.text()
-    return
+const web_search = async (query) => {
+    const res = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json`)
+    const data = await res.json()
+    return data
 }
 // function: search files
 const search_files = async (path) => {
@@ -118,7 +118,7 @@ const tools = [
     {
         type: "function",
         function: {
-            name: "curl",
+            name: "web_search",
             description: "Search web for updated content",
             parameters: {
                 type: "object",
@@ -184,7 +184,7 @@ rl.on('line', async (line) => {
             if (functionName === "read_file") { console.log("read_file() called")}
             if (functionName === "write_file") { console.log("write_file() called")}
             if (functionName === "bash") { console.log("bash() called")}
-            if (functionName === "curl") { console.log("curl() called")}
+            if (functionName === "web_search") { console.log("web_search() called")}
             if (functionName === "search_files") { console.log("search_files() called")}
         }
     }
