@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node lectures/p2-lecture3.js",
+    "start": "node lectures/l4-embed-vector-rag/p2-lecture3.js",
     "test": "node homework/toolTest.js"
   },
   "keywords": [],
