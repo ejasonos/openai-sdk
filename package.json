@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node lectures/l4-embed-vector-rag/p2-lecture3.js",
-    "test": "node homework/toolTest.js"
+    "test": "node homework/toolTest.js",
+    "rag": "node homework/rag/rag.js"
   },
   "keywords": [],
   "author": "",

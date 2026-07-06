@@ -1,0 +1,6 @@
+Company name: Mall Titan
+Company workforce size: 500 People
+Company male workforce: 200 People
+Company female workforce: 300 People
+Company valuation: $4.2 billion
+Company CEO: Challant Venor
