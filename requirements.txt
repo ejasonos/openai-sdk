@@ -1,0 +1,9 @@
+langchain<1
+langchain-community<0.4
+langchain-core<0.4
+langchain-openai<1
+requests
+python-dotenv
+langchainhub
+langchain-ollama<1
+langchain-tavily
